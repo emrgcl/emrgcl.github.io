@@ -2,7 +2,7 @@
 layout: post
 title:  "Better Observability With Azure Monitor Agent (AMA)"
 date:   2022-09-25 09:05:42 +0300
-categories: AzureMonitor AzureMonitorAgent Azure
+categories: Azure AzureMonitor AzureMonitorAgent 
 ---
 # Overview
 
