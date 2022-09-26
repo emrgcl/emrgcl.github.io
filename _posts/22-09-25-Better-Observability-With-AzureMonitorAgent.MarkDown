@@ -6,6 +6,8 @@ categories: Azure AzureMonitor AzureMonitorAgent
 ---
 # Overview
 
+In this post I would like to cover the story of the new agent. What it brings to us and expose the why and how things have changed so that we can plan and execute a succesful transition to the new experience.
+
 ***Azure Monitor Agent (AMA)*** is Generally Available [since Jun 2021](https://techcommunity.microsoft.com/t5/azure-observability-blog/a-powerful-agent-for-azure-monitor-and-a-simpler-world-of-data/ba-p/2443285), hoping to replace the **legacy** agent (Microsoft Monitoring Agent (SCOM Agent) / Log Analytics Agent) on Windows Servers.
 
 The Legacy agent [will not be supported](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/agents-overview) after August 2024.
@@ -23,10 +25,12 @@ This agent served well for sending data to Log Analytics Worksapces but things e
 - Performance (Event Per Second) improvements.
 
 # The new Agent - Azure Monitor Agent - AMA
-The new agent is actually an extension to Azure VM or to Arc For Servers which makes Arc For Servers a prerequisite for on prem scenarios. Yes! if you have on-prem servers you need to [Deploy Connected Machine Agent](https://learn.microsoft.com/en-us/azure/azure-arc/servers/deployment-options) first... (dont worry though, we will cover!)
+This new agent is actually an extension to Azure VM or to Arc For Servers which makes Arc For Servers a prerequisite for on prem scenarios. Yes! if you have on-prem servers you need to [Deploy Connected Machine Agent](https://learn.microsoft.com/en-us/azure/azure-arc/servers/deployment-options) first... 
 
 ## Data Collection Rules - DCR
-Data is collection method is maybe the most important change. We are not collecting data any more with solutions or the agent management tab on log analytics workspaces but with ***Data Collection Rules** which are actually resources that can be manageable using arm! 
+Data collection has changed and this maybe the most important new feature of the new Agent.
+
+We are not collecting data any more with solutions or the agent management tab on log analytics workspaces but with ***Data Collection Rules** which are actually resources that can be manageable using arm! 
 
 You can access these data collection rules in Monitor blade in the portal and add/remove/set using the portal.
 ![DCR](/assets/images/22-09-25-Better-Observability-With-AzureMonitorAgent/dcr-1.jpg)
