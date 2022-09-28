@@ -4,7 +4,7 @@ title:  "Azure Monitor Agent and VM Insights: Deployment and Configuration Best 
 date:   2022-09-26 09:05:42 +0300
 categories: Azure
 ---
-
+> 
 # Overview
 
 At the very current moment we have two agents for Azure Monitor
