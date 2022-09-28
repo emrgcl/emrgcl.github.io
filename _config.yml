@@ -23,7 +23,7 @@ email: emreguclu@hotmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Join me in this learning and growing journey of the modern infra and DevOps world.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://www.emreguclu.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: emrgcl
 github_username:  emrgcl
 google_analytics: G-M687CWVWFY
@@ -32,6 +32,7 @@ google_analytics: G-M687CWVWFY
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
 
 # Exclude from processing.
 # The following items will not be processed, by default.
