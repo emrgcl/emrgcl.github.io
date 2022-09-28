@@ -1,9 +1,10 @@
 ---
 layout: post
-title:  "Jekyll QuickStart - Working with Jekyll"
-date:   2022-09-22 12:05:42 +0300
+title:  "Jekyll QuickStart -2- Working with Jekyll"
+date:   2022-09-22 10:05:42 +0300
 categories: "Dev Tools"
 ---
+> We installed Jekyll on Windows now its time customize and publish some posts!
 
 ## Run your site
 Build site with live preivew (no refresh needed!)

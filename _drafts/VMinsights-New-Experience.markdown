@@ -5,6 +5,8 @@ date:   2022-09-22 12:05:42 +0300
 categories: jekyll update
 ---
 
+> Enable the new VMInsights and unleash the power of the new Azure Monitor Agent (AMA)!
+
 I love Murat Here as well!
 ````
 {% highlight powershell %}

@@ -4,9 +4,7 @@ title:  "Better Observability With Azure Monitor Agent (AMA)"
 date:   2022-09-25 09:05:42 +0300
 categories: Azure AzureMonitor AzureMonitorAgent 
 ---
-# Overview
-
-In this post I would like to cover the story of the new agent. What it brings to us and expose the why and how things have changed so that we can plan and execute a succesful transition to the new experience.
+> In this post I would like to cover the story of the new agent. What it brings to us and expose the why and how things have changed so that we can plan and execute a succesful transition to the new experience.
 
 ***Azure Monitor Agent (AMA)*** is Generally Available [since Jun 2021](https://techcommunity.microsoft.com/t5/azure-observability-blog/a-powerful-agent-for-azure-monitor-and-a-simpler-world-of-data/ba-p/2443285), hoping to replace the **legacy** agent (Microsoft Monitoring Agent (SCOM Agent) / Log Analytics Agent) on Windows Servers.
 

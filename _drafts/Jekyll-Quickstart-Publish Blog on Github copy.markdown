@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "Jekyll QuickStart -1- Installing on Windows"
-date:   2022-09-22 09:05:42 +0300
-categories: Tools
+title:  "Jekyll QuickStart -3- Publish Blog on Github"
+date:   2022-09-22 10:05:42 +0300
+categories: "Dev Tools"
 ---
-> Lets install Jeykll on windows and start blogging!
+> Lets publish our Jekyll blog to Github! You can even add your custom domain...
 
 ## Installing Jekyll
 I assume you are running windows for your dev enironment and this guide covers installation for Windows.
