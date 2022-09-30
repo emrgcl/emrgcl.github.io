@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Manage, Monitor Cloudand Ops Blog
+title: Manage, Monitor Azure and DevOps Blog
 email: emreguclu@hotmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Join me in this learning and growing in management and monitoring of the Modern Infra and DevOps world.
