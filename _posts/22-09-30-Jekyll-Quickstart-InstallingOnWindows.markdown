@@ -70,5 +70,5 @@ Jekyll is a gem for Ruby (A gem is a pacakge in ruby). All we need to do is inst
     Server running... press ctrl-c to stop.
   [2022-09-28 13:45:24] ERROR `/favicon.ico' not found.
   ```
-  >Note:  Dont worry about the icon error, the theme looks for by default. I never used it :)
+  > Note:  Dont worry about the icon error, the theme looks for by default. I never used it :)
 - Hapy Jekylling :) Browse to http://127.0.0.1:4000/ and Enjoy!
