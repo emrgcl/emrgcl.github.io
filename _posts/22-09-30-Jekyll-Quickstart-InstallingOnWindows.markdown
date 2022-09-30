@@ -7,7 +7,9 @@ categories: Tools Blogging Jekyll
 > Lets install Jeykll on windows and start blogging! By the end of this blog you will have your Jeykll Site up and running on your Local Windows computer! Installing Jekyll is few easy steps that will not take more than 1 hour. Jump in! you might finish within 30 minutes as well : )
 
 ## What is Jekyll? Why do I need it?
-Well.. 
+Well.. Do you need a site like Wordpress for blogging? or just want to host your portfolio? These are the common static site scenarios. Jekyll is the most popular static site genarator out there and Github Pages has built in support for it!
+
+As a tech person, I am already using Vscode, git and hosting code on github.. if you are like me, learning curve is super easy and Jekyll is super fun!
 
 ## Highlevel Steps and Prerequisite
 
