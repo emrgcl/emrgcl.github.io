@@ -31,8 +31,9 @@ The easiest way is to use a tool named nvm (Node Version Manager) and we need to
 To install nvm I will use Winget, it is bundled into Windows 11  For more information about please visit [Use the winget tool to install and manage applications](https://learn.microsoft.com/en-us/windows/package-manager/winget/)
 
 > Note: The winget command line tool is only supported on ***Windows 10 1709 (build 16299)*** or later at this time.
+
 - Open a Powershell Terminal (I recommend Windows Terminal!)
-- Search the package in winget `winget search nvm' 
+- Search the package in winget `winget search nvm`
 
     ![image]({{ site.url }}/assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/Winget_Search.jpg)
 
