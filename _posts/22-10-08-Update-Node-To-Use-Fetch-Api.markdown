@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Update Node to use Fetch Api for JavaScript"
+title:  "Update Node.js to use Fetch Api for JavaScript"
 date:   2022-10-08 09:05:42 +0300
 categories: Frontend
 ---
