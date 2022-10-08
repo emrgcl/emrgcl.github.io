@@ -14,11 +14,9 @@ fetch("https://jsonplaceholder.typicode.com/todos/1")
   .then((response) => response.json())
   .then((json) => console.log(json));
 ```
-- You will recieve the following error
+- You will recieve the following error:
 
-    `
-    ReferenceError: fetch is not defined
-    `
+    `ReferenceError: fetch is not defined`
 
 As mentioned earlier int he post fetch api is not supported by node in the LTS branch but in the Latest one.
 
