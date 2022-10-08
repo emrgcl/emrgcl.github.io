@@ -33,23 +33,23 @@ To install nvm I will use Winget, it is bundled into Windows 11  For more inform
 - Open a Powershell Terminal (I recommend Windows Terminal!)
 - Search the package in winget `winget search nvm`
 
-    ![image]({{ site.url }}/assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/Winget_Search.jpg)
+    ![WingetSearch]({{ site.url }}/assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/Winget_Search.jpg)
 
 - Installion is easy `Winget install 'NVM for windows'`, once the download finishes the follow the install wizard that pops up, you are good to go.
 - Lets see our nvm version `nvm v` . In my case it was 1.1.9.
 - Lets see our Node version! thats the whole point for this blog, to update it! Sooo run `nvm list`
-    ![image](../assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/NVM_Current_Version.jpg)
+    ![currentversion]({{ site.url }}/assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/NVM_Current_Version.jpg)
 - Lets see what are the available versions to install. `nvm list available`
-    ![image](../assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/NVM_Available_Versions.jpg)
+    ![availableversion]({{ site.url }}/assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/NVM_Available_Versions.jpg)
 - Note the version we need. In this case **18.10.0**
 - Lets update Node! To install latest you can use `nvm install latest` or for specific version `nvm install 18.10.0`. I am the fan of the latest : )
-    ![image](../assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/nvm_install_latest.jpg)
+    ![intalllatest]({{ site.url }}/assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/nvm_install_latest.jpg)
 - Not finished yet, but we are close! Now we have two installations of Node. Do an `nvm list` you should see more than one and please note you installed the latest but not using it yet.
-    ![image](../assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/NVM_list.jpg)
+    ![list]({{ site.url }}/assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/NVM_list.jpg)
 - `nvm use 18.10.0` to set the version to the latest! You are done!
-    ![image](../assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/nvm_use.jpg)
+    ![useversion]({{ site.url }}/assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/nvm_use.jpg)
 - lets run the script now! `node FetchSample.js`
 
-    ![image](../assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/use-fetch-with-node.jpg)
+    ![finally]({{ site.url }}/assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/use-fetch-with-node.jpg)
 
 All set happy noding!...
