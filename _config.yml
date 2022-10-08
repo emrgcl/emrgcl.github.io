@@ -22,7 +22,7 @@ title: Manage, Monitor Azure and DevOps Blog
 email: emreguclu@hotmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Join me in this learning and growing in management and monitoring of the Modern Infra and DevOps world.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "https://www.emreguclu.io" # the subpath of your site, e.g. /blog
 url: "https://www.emreguclu.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: emrgcl
 github_username:  emrgcl
