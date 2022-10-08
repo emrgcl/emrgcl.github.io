@@ -34,7 +34,7 @@ To install nvm I will use Winget, it is bundled into Windows 11  For more inform
 - Open a Powershell Terminal (I recommend Windows Terminal!)
 - Search the package in winget `winget search nvm' 
 
-    ![image]({{ site.baseurl }}/assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/Winget_Search.jpg)
+    ![image]({{ site.url }}/assets/images/22-10-08-Update-Node-To-Use-Fetch-Api/Winget_Search.jpg)
 
 - Installion is easy `Winget install 'NVM for windows'`, once the download finishes the follow the install wizard that pops up, you are good to go.
 - Lets see our nvm version `nvm v` . In my case it was 1.1.9.
