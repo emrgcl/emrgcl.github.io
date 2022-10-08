@@ -4,7 +4,7 @@ title:  "Update Node to use Fetch Api for JavaScript"
 date:   2022-10-08 09:05:42 +0300
 categories: Frontend
 ---
-> I was studying **ReactJS** for a project to help **Azure** users in managing resource tags. I needed to work on [sample JavaScripts](https://github.com/emrgcl/JavaScriptSamples) to basically manage arrays, work with fetch api and so on. I prefer running `node scriptname.js` instead of starting a live server and viewing on the browser but noticed that the fetch api is not avaiable in node lts version but on the current (latest) version. Now I need to update! Lets see how easy it is on Windows!. Hmmm probably 30 minutes reading and installation time in total!
+> I was studying **ReactJS** for a project to help **Azure** users in managing **resource tags**. I needed to work on [sample JavaScripts](https://github.com/emrgcl/JavaScriptSamples) to basically manage arrays, work with fetch api and so on. I prefer running `node scriptname.js` instead of starting a live server and viewing on the browser but noticed that the fetch api is not avaiable in node lts version but on the current (latest) version. Now I need to update! Lets see how easy it is on Windows!. Hmmm probably 30 minutes reading and installation time in total!
 
 ## The problem
 - try to run the following basic fetch request `node FetchSample.js`.
