@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "Enable DevOps (Source Control) for Azure Autoamtion"
+title:  "Enable DevOps (Source Control) for Azure Automation"
 date:   2022-10-13 09:05:42 +0300
 categories: Azure DevOps AzureAutomation 
 ---
 > Do you need a better (**DevOps**) way to manage **Azure Automation runbooks**? In this post we will integrate Azure Automation With **Azure Devops**, start managing our runbooks using VSCode & Git.We will also discuss and decide a branching strategy based on **Git Flow**. Spend an hour with me to enhance your Azure Automation Workflow management.  
 
-## Branching Strategy and Automatio Runbooks.
+## Branching Strategy and Automation Runbooks.
 Before integrating source control for our beloved runbooks, we need to decide on how to manage the source aka. "Branching Strategy". 
 
 
@@ -57,7 +57,8 @@ Before diving into the topic make sure the following are in-place
 
 # Configure Source Control
 
-```PowerShell
+{% highlight powershell %}
+
 $parameters = @{
     Name = "DevopsIntegration"
     RepoUrl ="https://test@dev.azure.com/test/Project/_git/DbOps"
@@ -71,4 +72,4 @@ $parameters = @{
 Connect-AzAccount | Out-Null
 Set-AzContext -Subscription "xxxxa791-369f-48a7-966d-2f21afc2xxxx" | Out-Null
 New-AzAutomationSourceControl @parameters
-```
+{% endhighlight %}
