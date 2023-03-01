@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Customizing Windows Terminal for PowerShell with Oh My Posh: A Guide to Personalized Prompts"
-date:   2022-10-08 09:05:42 +0300
+date:   2023-02-28 09:05:42 +0300
 categories: Tools
 ---
 > ![ohMyPosh]({{ site.url }}/assets/images/23-02-28-Customizing-Windows-Terminal-for-PowerShell-with-Oh-My-Posh-A-Guide-to-Personalized-Prompts/ohmyposh.png) Windows Terminal is a powerful tool for command-line interface users who want to customize their experience. One way to make the terminal more user-friendly is by using Oh My Posh, which is a theme engine for PowerShell that provides a sleek and customizable prompt. By integrating **[Oh My Posh](https://ohmyposh.dev/)** into Windows Terminal, users can enhance their PowerShell experience and make it more efficient and visually appealing. In this guide, we will explore how to install and use Oh My Posh in Windows Terminal to create a personalized prompt that suits your style and workflow.
