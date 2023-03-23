@@ -1,0 +1,75 @@
+/* Container for the chat transcript */
+.chat-container {
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  
+  /* Base styles for user and assistant messages */
+  .chat-container .message {
+    margin-bottom: 16px;
+    position: relative;
+    padding: 8px 16px;
+    border-radius: 12px;
+    clear: both;
+  }
+  
+  .chat-container .user,
+  .chat-container .assistant {
+    width: 80%;
+  }
+  
+  /* User message styles */
+  .chat-container .user {
+    background-color: #e1f5fe;
+    color: #000;
+    float: right;
+    margin-right: 10%;
+  }
+  
+  .chat-container .user:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -7px;
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-left-color: #e1f5fe;
+    margin-top: -3.5px;
+    margin-right: -1px;
+  }
+  
+  /* Assistant message styles */
+  .chat-container .assistant {
+    background-color: #f0f4c3;
+    color: #000;
+    float: left;
+    margin-left: 10%;
+  }
+  
+  .chat-container .assistant:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -7px;
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-right-color: #f0f4c3;
+    margin-top: -3.5px;
+    margin-left: -1px;
+  }
+  
+  /* Clear float */
+  .chat-container::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  

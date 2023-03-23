@@ -1,0 +1,83 @@
+/* Container for the chat transcript */
+.chat-container {
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  
+  /* Base styles for user and assistant messages */
+  .chat-container .message {
+    margin-bottom: 16px;
+    position: relative;
+    padding: 8px 16px;
+    border-radius: 12px;
+    clear: both;
+  }
+  
+  .chat-container .user,
+  .chat-container .assistant {
+    width: 80%;
+  }
+  
+  /* User message styles */
+  .chat-container .user {
+    background-color: #e1f5fe;
+    color: #000;
+    float: right;
+    margin-right: 10%;
+  }
+  
+  .chat-container .user:before {
+    content: 'EG';
+    position: absolute;
+    left: -34px;
+    top: 50%;
+    transform: translateY(-50%);
+    //font-weight: bold;
+    color: #fff;
+    background-color: #5d95c6;
+    width: 30px;
+    height: 30px;
+    //line-height: 20px;
+    //text-align: center;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 12px;
+    
+  }
+
+  
+  /* Assistant message styles */
+  .chat-container .assistant {
+    background-color: #f0f4c3;
+    color: #000;
+    float: left;
+    margin-left: 10%;
+  }
+  
+  .chat-container .assistant:before {
+    content: '';
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: url('/assets/images/openai-icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  /* Clear float */
+  .chat-container::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
