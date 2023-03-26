@@ -2,21 +2,22 @@
 layout: post
 title: "ASP.NET Core Web API Naming Conventions: Best Practices for Code Organization"
 date: 2023-03-26
-summary: "In this post, we'll explore the essential naming conventions for building well-organized and maintainable ASP.NET Core Web APIs. Following these best practices will help you create consistent, easy-to-understand code that fosters collaboration and eases future development."
 categories: [aspnetcore, webapi, best-practices]
 ---
+
+> In this post, we'll explore the essential naming conventions for building well-organized and maintainable ASP.NET Core Web APIs. Following these best practices will help you create consistent, easy-to-understand code that fosters collaboration and eases future development.
 
 ASP.NET Core Web API follows certain naming conventions for better organization, readability, and maintainability. Here are some of the common naming conventions:
 
 1.  **Namespace**:  
     Organize your code into namespaces that reflect the application structure and functionality. For example, use a `.Controllers` suffix for the namespace containing controllers and a `.Models` suffix for the namespace containing models.
 
-        ```csharp
+        {% highlight csharp %}
         namespace YourApplicationName.Controllers
         {
             // Your controller code here
         }
-        ```
+        {%endhighlight%}
 
 2.  **Controllers**:  
     Controller class names should be in PascalCase, end with the "Controller" suffix, and inherit from `ControllerBase` class. This convention helps ASP.NET Core to identify controller classes automatically.
