@@ -22,17 +22,17 @@ ASP.NET Core Web API follows certain naming conventions for better organization,
 2.  **Controllers**:  
     Controller class names should be in PascalCase, end with the "Controller" suffix, and inherit from `ControllerBase` class. This convention helps ASP.NET Core to identify controller classes automatically.
 
-        ```csharp
+        {% highlight csharp %}
         public class BooksController : ControllerBase
         {
             // Your action methods here
         }
-        ```
+        {%endhighlight%}
 
 3.  **Action Methods**:  
     By convention, action method names should be descriptive and use a verb that matches the intent of the action (e.g., `Get`, `Post`, `Put`, `Delete`). Use PascalCase for action method names.
 
-        ```csharp
+        {% highlight csharp %}
         [HttpGet]
         public ActionResult<IEnumerable<Book>> GetBooks()
         {
@@ -50,40 +50,40 @@ ASP.NET Core Web API follows certain naming conventions for better organization,
         {
             // Your code here
         }
-        ```
+        {%endhighlight%}
 
 4.  **Models**:  
     Model class names should be nouns that describe the resource or entity they represent, and should use PascalCase. For example:
 
-        ```csharp
+        {% highlight csharp %}
         public class Book
         {
             public int Id { get; set; }
             public string Title { get; set; }
             public string Author { get; set; }
         }
-        ```
+        {%endhighlight%}
 
 5.  **Route Templates**:  
     Route templates should use lowercase, hyphen-separated (kebab-case) words. Use route tokens like `[controller]`, `[action]`, and `[area]` to make route templates dynamic.
 
-        ```csharp
+        {% highlight csharp %}
         [Route("api/[controller]")]
         public class BooksController : ControllerBase
         {
             // Your action methods here
         }
-        ```
+        {%endhighlight%}
 
 6.  **Route Parameters**:  
     Route parameters should be camelCase, as they are case-sensitive and must match the action method parameters.
 
-        ```csharp
+        {% highlight csharp %}
         [HttpGet("{bookId}")]
         public ActionResult<Book> GetBook(int bookId)
         {
             // Your code here
         }
-        ```
+        {%endhighlight%}
 
 These are some of the common naming conventions in ASP.NET Core Web API. It's important to follow these conventions for consistency and better organization of your code.
