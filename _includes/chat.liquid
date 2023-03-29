@@ -1,0 +1,10 @@
+{% assign messages = site.data.gpt.messages %}
+
+<div class="chat-container">
+  {% for message in messages %}
+
+    <div class="message user">{{ message.question }}</div>
+    <div class="message assistant">{{ message.answer }}</div>
+
+  {% endfor %}
+</div>
