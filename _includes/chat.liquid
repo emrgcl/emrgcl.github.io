@@ -4,7 +4,7 @@
   {% for message in messages %}
 
     <div class="message user">{{ message.question }}</div>
-    <div class="message assistant">{{ message.answer }}</div>
+    <div class="message assistant"><pre>{{ message.answer }}</pre></div>
 
   {% endfor %}
 </div>
