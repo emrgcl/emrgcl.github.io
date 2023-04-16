@@ -9,6 +9,8 @@ tags: [dns, monitoring, windows server, performance]
 
 > Monitoring DNS servers is critical for ensuring the health, performance, and security of your network. DNS servers are responsible for translating domain names into IP addresses, which allows devices to access resources on the internet or local networks. If a DNS server fails or performs poorly, it can lead to slow website load times, inaccessible resources, and potential security vulnerabilities. Monitoring key metrics helps you proactively identify and resolve issues before they impact users and your network infrastructure.
 
+<!--more-->
+
 ## Top 5 Metrics for Monitoring Windows Server DNS
 
 In this blog post, we'll cover the top 5 metrics you should monitor for your Windows Server DNS, along with suggested thresholds and corresponding performance counters.
@@ -51,9 +53,9 @@ Monitor the CPU, memory, and disk usage of your Windows Server DNS.
 
 **Performance counters:**
 
-- CPU: Processor(_Total)\% Processor Time
+- CPU: Processor(\_Total)\% Processor Time
 - Memory: Memory\% Committed Bytes In Use
-- Disk: LogicalDisk(_Total)\% Free Space
+- Disk: LogicalDisk(\_Total)\% Free Space
 
 **Suggested thresholds:**
 

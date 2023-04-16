@@ -7,6 +7,8 @@ categories: [aspnetcore, webapi, best-practices]
 
 > In this post, we'll explore the essential naming conventions for building well-organized and maintainable ASP.NET Core Web APIs. Following these best practices will help you create consistent, easy-to-understand code that fosters collaboration and eases future development.
 
+<!--more-->
+
 ASP.NET Core Web API follows certain naming conventions for better organization, readability, and maintainability. Here are some of the common naming conventions:
 
 1.  **Namespace**:  

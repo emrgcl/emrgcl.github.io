@@ -5,9 +5,44 @@
         "body": [
             "<div class='message user'>",
             "  <span class='content'>",
+            "   ${0}",
             "  </span>",
             "</div>"
         ],
         "description": "Chat style for blog post"
-    }
+    },
+    "Message Assistant": {
+        "scope": "markdown",
+        "prefix": "msga",
+        "body": [
+            "<div class='message assistant'>",
+            "  <span class='content'>",
+            "   ${0}",
+            "  </span>",
+            "</div>"
+        ],
+        "description": "Chat style for blog post"
+    },
+    "Chat box": {
+        "scope": "markdown",
+        "prefix": "chatbox",
+        "body": [
+            "<div class='chat-container'>",
+            "   ${0}",
+            "</div>"
+        ],
+        "description": "Chat style for blog post"
+    },
+    "Jekyll Highlight PowerShell" :
+    {
+        "scope": "markdown",
+        "prefix": "jekyllps",
+        "body": [
+            "{% highlight powershell %}",
+            "${0}",
+            "{% endhighlight %}"
+        ],
+        "description": "Jekyll Highlight PowerShell"
+    },
+
 }
