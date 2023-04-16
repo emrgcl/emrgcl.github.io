@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config Version="1.0">
+  <Component Name="Microsoft.EnterpriseManagement.ManagementConfiguration">
+    <Instance Name="Default">
+      <Category Name="Service">
+        <Setting Name="ServiceEventLogName" Value="Operations Manager" />
+        <Setting Name="ServiceEventLogSource" Value="OpsMgr Management Configuration" />
+        <Setting Name="ServiceEventLogDisplayName" Value="OpsMgr Management Configuration Service" />
+      </Category>
+      <Category Name="Engine">
+        <Setting Name="MaxResponseThreadsPercentage" Value="25" />
+        <Setting Name="ThreadPoolThreadCountPerProcessor" Value="25" />
+        <Setting Name="MaxThreadPoolThreadCount" Value="200" />
+        <Setting Name="MaxConfigurationRequestBatchSize" Value="5" />
+        <Setting Name="RequestReEnqueueOnLockoutTimeoutMilliseconds" Value="5000" />
+        <Setting Name="ConfigurationHashingBufferSizeKb" Value="1024" />
+      </Category>
+      <Category Name="Cmdb">
+        <Setting Name="ServerName" Value="scom" />
+        <Setting Name="DatabaseName" Value="OperationsManager" />
+        <Setting Name="PortNumber" Value="0" />
+        <Setting Name="FailoverPartnerServerName" Value="" />
+        <Setting Name="FailoverPartnerPortNumber" Value="0" />
+      </Category>
+      <Category Name="ConfigStore">
+        <Setting Name="ServerName" Value="scom" />
+        <Setting Name="DatabaseName" Value="OperationsManager" />
+        <Setting Name="PortNumber" Value="0" />
+        <Setting Name="FailoverPartnerServerName" Value="" />
+      </Category>
+    </Instance>
+  </Component>
+</Config>

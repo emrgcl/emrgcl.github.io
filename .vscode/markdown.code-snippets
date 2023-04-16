@@ -1,0 +1,13 @@
+{
+    "Message User": {
+        "scope": "markdown",
+        "prefix": "msgu",
+        "body": [
+            "<div class='message user'>",
+            "  <span class='content'>",
+            "  </span>",
+            "</div>"
+        ],
+        "description": "Chat style for blog post"
+    }
+}

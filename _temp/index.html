@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display JSON as String</title>
+  <script>
+    window.addEventListener("DOMContentLoaded", function() {
+      const jsonString = '{\n "messages": [\n {\n "question": "What\'s your name?",\n "answer": "My name is ChatGPT."\n },\n {\n "question": "How are you doing today?",\n "answer": "I\'m doing well, thank you for asking."\n },\n {\n "question": "What\'s the weather like today?",\n "answer": "I\'m sorry, I don\'t have access to real-time weather data."\n }\n ]\n }';
+      const preElement = document.getElementById("json-container");
+      preElement.textContent = jsonString;
+    });
+  </script>
+</head>
+<body>
+  <h1>JSON Text</h1>
+  <pre id="json-container"></pre>
+</body>
+</html>
