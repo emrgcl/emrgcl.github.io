@@ -59,6 +59,7 @@ In this post, we will explore how utilizing GPT-4 saved time and effort during a
 
 <div class = "message assistant">
 <span class = "content">Here is a PowerShell script that reads the XML content you provided and stores it in a variable named `$xmlContent` . You can use this variable to extract any required information from the XML and manipulate it as needed.
+<span>
 {%highlight PowerShell%}
 
 $xmlContent = @"
@@ -84,6 +85,7 @@ $serverName = $xmlObject.Config.Component.Instance.Category.Where({ $_.Name -eq 
 Write-Host "Server Name: $serverName"
 {%endhighlight%}
 
+</span>
 Replace the ... with the rest of the XML content you provided. You can modify this script to extract other values or perform additional tasks based on the XML content.
 </span>
 
