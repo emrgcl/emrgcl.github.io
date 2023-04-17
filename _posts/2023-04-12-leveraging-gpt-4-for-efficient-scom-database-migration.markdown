@@ -7,7 +7,7 @@ categories: [AI, GPT-4, PowerShell, SCOM]
 
 In this post, we will explore how utilizing GPT-4 saved time and effort during a project involving the migration of SCOM databases in a large environment with six management servers. Instead of spending half a day manually developing and testing a PowerShell script to update XML configuration files, GPT-4 was employed to quickly create a reliable and efficient solution. The script modifies the ServerName attribute under the Cmdb and ConfigStore categories and implements -WhatIf support using SupportsShouldProcess. Discover the power of AI-driven assistance and how GPT-4 can revolutionize the way we approach complex tasks like this one.
 
-> Note: Please note that the users (EG) prompts are not corrected, typos, grammar mistakes might exist to reclect the real life epxerience.
+> Note: Please note that the users (EG) prompts are not corrected, typos, grammar mistakes might exist to reflect the real life epxerience.
 
 <div class="chat-container">
 <div class ="message user">
