@@ -28,15 +28,19 @@ During our conversation, GPT-4 guided me in creating a PowerShell script to down
 
 {% highlight powershell %}
 function Get-FontName {
-param (
-[Parameter(Mandatory=$true)][string]$FontPath
-)
+    param (
+        [Parameter(Mandatory=$true)][string]$FontPath
+    )
 
     $fontBytes = [System.IO.File]::ReadAllBytes($FontPath)
     $font = New-Object -TypeName System.Drawing.Text.PrivateFontCollection
-    $font.AddMemoryFont([System.Runtime.InteropServices.Marshal]::UnmanagedType.Bool, $fontBytes.Length)
-    $font.Families[0].Name
 
+    $fontData = [System.Runtime.InteropServices.Marshal]::AllocHGlobal($fontBytes.Length)
+    [System.Runtime.InteropServices.Marshal]::Copy($fontBytes, 0, $fontData, $fontBytes.Length)
+    $font.AddMemoryFont($fontData, $fontBytes.Length)
+    [System.Runtime.InteropServices.Marshal]::FreeHGlobal($fontData)
+
+    $font.Families[0].Name
 }
 
 $url = "https://github.com/microsoft/cascadia-code/releases/download/v2111.01/CascadiaCode-2111.01.zip"
@@ -49,11 +53,11 @@ Invoke-WebRequest -Uri $url -OutFile $output
 
 # Extract the zip file
 
-Expand-Archive -Path $output -DestinationPath $extractFolder
+Expand-Archive -Path $output -DestinationPath $extractFolder -Force
 
 # Find the font file (.ttf) in the extracted folder
 
-$fontFile = Get-ChildItem -Path $extractFolder -Filter "\*.ttf" -Recurse | Select-Object -First 1
+$fontFile = Get-ChildItem -Path $extractFolder -Filter "*.ttf" -Recurse | Select-Object -First 1
 
 if ($fontFile) {
     $fontDestination = "C:\Windows\Fonts\$($fontFile.Name)"
