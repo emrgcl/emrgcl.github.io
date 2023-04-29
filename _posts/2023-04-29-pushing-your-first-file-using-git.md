@@ -5,7 +5,9 @@ date: 2023-04-29
 categories: [DevOps, Git, Series]
 ---
 
-In this tutorial, we will go through the process of pushing your first file to a remote Git repository step by step, showing the `git status` output and explaining it between each step.
+> In this tutorial, we will go through the process of pushing your first file to a remote Git repository step by step, showing the `git status` output and explaining it between each step.
+
+<!--more-->
 
 ## Step 1: Create a new file
 

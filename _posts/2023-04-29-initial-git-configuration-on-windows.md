@@ -5,6 +5,10 @@ categories: [DevOps, Git, Series, Windows]
 date: 2023-04-29
 ---
 
+> This post provides a step-by-step guide to setting up Git on a Windows machine, covering installation, user information configuration, default text editor selection, line ending adjustments, Git credentials storage, and proxy settings for secure connections. Learn how to properly configure your Git environment and streamline your development workflow on Windows.
+
+<!--more-->
+
 ## 1. Install Git for Windows
 
 Before you can configure Git, you'll need to have it installed on your computer. Download the installer from the [official Git website](https://git-scm.com/download/win) and follow the installation steps.
