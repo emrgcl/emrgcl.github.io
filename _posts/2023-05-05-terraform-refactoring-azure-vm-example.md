@@ -5,7 +5,9 @@ date: 2023-05-05
 categories: terraform azure refactoring
 ---
 
-When working with Terraform configurations, it's essential to keep them modular and maintainable. One way to achieve this is by using modules. This post demonstrates how to refactor an Azure VM Terraform configuration to use modules, without causing any changes to the existing infrastructure. We will also cover how to use the `terraform state mv` command to update the Terraform state during the refactoring process.
+> When working with Terraform configurations, it's essential to keep them modular and maintainable. One way to achieve this is by using modules. This post demonstrates how to refactor an Azure VM Terraform configuration to use modules, without causing any changes to the existing infrastructure. We will also cover how to use the `terraform state mv` command to update the Terraform state during the refactoring process.
+
+<!--more-->
 
 ## Initial Azure VM Configuration
 
