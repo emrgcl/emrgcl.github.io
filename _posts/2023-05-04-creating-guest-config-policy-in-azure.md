@@ -25,13 +25,13 @@ Dive into the world of Azure Guest Configuration Policies with ChatGPT, as it ex
 </div>
 
 
-1. Install the required modules:
+- Install the required modules:
    {% highlight powershell %}
    Install-Module -Name Az -AllowClobber
    Install-Module -Name GuestConfiguration
    {% endhighlight %}
 
-2. Create a PowerShell DSC script:
+- Create a PowerShell DSC script:
    {% highlight powershell %}
    Configuration RegistryConfiguration {
        Import-DscResource -ModuleName PSDesiredStateConfiguration
@@ -50,12 +50,12 @@ Dive into the world of Azure Guest Configuration Policies with ChatGPT, as it ex
    RegistryConfiguration
    {% endhighlight %}
 
-3. Create a MOF file:
+- Create a MOF file:
    {% highlight powershell %}
    .\RegistryConfiguration.ps1
    {% endhighlight %}
 
-4. Create an Azure Storage Account:
+- Create an Azure Storage Account:
    {% highlight powershell %}
    $resourceGroupName = "YourResourceGroupName"
    $location = "YourLocation"
@@ -65,19 +65,19 @@ Dive into the world of Azure Guest Configuration Policies with ChatGPT, as it ex
    New-AzStorageAccount -ResourceGroupName $resourceGroupName -Name $storageAccountName -Location $location -SkuName Standard_LRS -Kind StorageV2
    {% endhighlight %}
 
-5. Upload the MOF file to the Storage Account:
+- Upload the MOF file to the Storage Account:
    {% highlight powershell %}
    $ctx = (Get-AzStorageAccount -ResourceGroupName $resourceGroupName -Name $storageAccountName).Context
    Set-AzStorageBlobContent -File '.\RegistryConfiguration\localhost.mof' -Container 'dscfiles' -Blob 'localhost.mof' -Context $ctx
    {% endhighlight %}
 
-6. Create a Guest Configuration Package:
+- Create a Guest Configuration Package:
    {% highlight powershell %}
    $configurationPath = '.\RegistryConfiguration\localhost.mof'
    New-GuestConfigurationPackage -Name 'RegistryConfiguration' -Path $configurationPath -Type 'Dsc'
    {% endhighlight %}
 
-7. Deploy the Guest Configuration Policy:
+- Deploy the Guest Configuration Policy:
    {% highlight powershell %}
    $packagePath = '.\RegistryConfiguration.zip'
    $configurationDataPath = '.\RegistryConfiguration\ConfigurationData.psd1'
