@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Terraform Refactoring: Azure VM Example"
-date: 2023-05-05
+date: 2023-05-04
 categories: terraform azure refactoring
 ---
 

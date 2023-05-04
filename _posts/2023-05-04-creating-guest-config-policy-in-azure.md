@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "Creating a Guest Config Policy in Azure: A Chatbot-guided Tutorial"
-excerpt: "Dive into the world of Azure Guest Configuration Policies with ChatGPT, as it expertly guides a user through the process of deploying a registry setting using PowerShell Desired State Configuration."
 categories: [azure, powershell, tutorial]
 ---
 
@@ -24,17 +23,16 @@ Dive into the world of Azure Guest Configuration Policies with ChatGPT, as it ex
    </div>
 </div>
 
-
 - Install the required modules:
-   {% highlight powershell %}
-   Install-Module -Name Az -AllowClobber
-   Install-Module -Name GuestConfiguration
-   {% endhighlight %}
+  {% highlight powershell %}
+  Install-Module -Name Az -AllowClobber
+  Install-Module -Name GuestConfiguration
+  {% endhighlight %}
 
 - Create a PowerShell DSC script:
-   {% highlight powershell %}
-   Configuration RegistryConfiguration {
-       Import-DscResource -ModuleName PSDesiredStateConfiguration
+  {% highlight powershell %}
+  Configuration RegistryConfiguration {
+  Import-DscResource -ModuleName PSDesiredStateConfiguration
 
        Node 'localhost' {
            Registry 'SetRegistryValue' {
@@ -45,41 +43,42 @@ Dive into the world of Azure Guest Configuration Policies with ChatGPT, as it ex
                Ensure = 'Present'
            }
        }
-   }
 
-   RegistryConfiguration
-   {% endhighlight %}
+  }
+
+  RegistryConfiguration
+  {% endhighlight %}
 
 - Create a MOF file:
-   {% highlight powershell %}
-   .\RegistryConfiguration.ps1
-   {% endhighlight %}
+  {% highlight powershell %}
+  .\RegistryConfiguration.ps1
+  {% endhighlight %}
 
 - Create an Azure Storage Account:
-   {% highlight powershell %}
-   $resourceGroupName = "YourResourceGroupName"
-   $location = "YourLocation"
-   $storageAccountName = "youruniquestorageaccountname"
+  {% highlight powershell %}
+  $resourceGroupName = "YourResourceGroupName"
+  $location = "YourLocation"
+  $storageAccountName = "youruniquestorageaccountname"
 
-   New-AzResourceGroup -Name $resourceGroupName -Location $location
-   New-AzStorageAccount -ResourceGroupName $resourceGroupName -Name $storageAccountName -Location $location -SkuName Standard_LRS -Kind StorageV2
-   {% endhighlight %}
+  New-AzResourceGroup -Name $resourceGroupName -Location $location
+  New-AzStorageAccount -ResourceGroupName $resourceGroupName -Name $storageAccountName -Location $location -SkuName Standard_LRS -Kind StorageV2
+  {% endhighlight %}
 
 - Upload the MOF file to the Storage Account:
-   {% highlight powershell %}
-   $ctx = (Get-AzStorageAccount -ResourceGroupName $resourceGroupName -Name $storageAccountName).Context
-   Set-AzStorageBlobContent -File '.\RegistryConfiguration\localhost.mof' -Container 'dscfiles' -Blob 'localhost.mof' -Context $ctx
-   {% endhighlight %}
+  {% highlight powershell %}
+  $ctx = (Get-AzStorageAccount -ResourceGroupName $resourceGroupName -Name $storageAccountName).Context
+  Set-AzStorageBlobContent -File '.\RegistryConfiguration\localhost.mof' -Container 'dscfiles' -Blob 'localhost.mof' -Context $ctx
+  {% endhighlight %}
 
 - Create a Guest Configuration Package:
-   {% highlight powershell %}
-   $configurationPath = '.\RegistryConfiguration\localhost.mof'
-   New-GuestConfigurationPackage -Name 'RegistryConfiguration' -Path $configurationPath -Type 'Dsc'
-   {% endhighlight %}
+  {% highlight powershell %}
+  $configurationPath = '.\RegistryConfiguration\localhost.mof'
+  New-GuestConfigurationPackage -Name 'RegistryConfiguration' -Path $configurationPath -Type 'Dsc'
+  {% endhighlight %}
 
 - Deploy the Guest Configuration Policy:
-   {% highlight powershell %}
-   $packagePath = '.\RegistryConfiguration.zip'
-   $configurationDataPath = '.\RegistryConfiguration\ConfigurationData.psd1'
-   $storageAccountSasToken = (New-AzStorageAccountSASToken -Service Blob -ResourceType Container, Object -Permission "r
-{% endhighlight %}
+  {% highlight powershell %}
+  $packagePath = '.\RegistryConfiguration.zip'
+  $configurationDataPath = '.\RegistryConfiguration\ConfigurationData.psd1'
+  $storageAccountSasToken = (New-AzStorageAccountSASToken -Service Blob -ResourceType Container, Object -Permission "r
+  {% endhighlight %}
