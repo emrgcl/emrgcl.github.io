@@ -82,3 +82,4 @@ Dive into the world of Azure Guest Configuration Policies with ChatGPT, as it ex
    $packagePath = '.\RegistryConfiguration.zip'
    $configurationDataPath = '.\RegistryConfiguration\ConfigurationData.psd1'
    $storageAccountSasToken = (New-AzStorageAccountSASToken -Service Blob -ResourceType Container, Object -Permission "r
+{% endhighlight %}
