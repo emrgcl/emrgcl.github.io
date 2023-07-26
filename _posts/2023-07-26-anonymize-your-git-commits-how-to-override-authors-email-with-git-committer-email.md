@@ -5,7 +5,7 @@ date: 2023-07-26
 categories: Git, Tutorial
 ---
 
-In Git, the name and email address associated with each commit are recorded. This information can be set globally or on a per-project basis. However, there might be situations where you want to override this information for a single commit or a series of commits. This can be done using the `GIT_COMMITTER_EMAIL` environment variable.
+> In Git, the name and email address associated with each commit are recorded. This information can be set globally or on a per-project basis. However, there might be situations where you want to override this information for a single commit or a series of commits. This can be done using the `GIT_COMMITTER_EMAIL` environment variable.
 
 <!--more-->
 
