@@ -7,6 +7,8 @@ categories: Git, Tutorial
 
 In Git, the name and email address associated with each commit are recorded. This information can be set globally or on a per-project basis. However, there might be situations where you want to override this information for a single commit or a series of commits. This can be done using the `GIT_COMMITTER_EMAIL` environment variable.
 
+<!--more-->
+
 The `GIT_COMMITTER_EMAIL` environment variable allows you to change the email address of the committer. In Git, the committer is the person who last applied the changes, and may not necessarily be the author of the changes.
 
 To override the committer's email for a single commit, you can use this command:
