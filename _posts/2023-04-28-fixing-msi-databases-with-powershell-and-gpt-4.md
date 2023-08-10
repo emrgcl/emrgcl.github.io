@@ -6,9 +6,7 @@ categories: [PowerShell, GPT-4, MSI, Windows]
 tags: [powershell, gpt-4, msi, windows, installation, automation]
 ---
 
-# Fixing MSI Databases with PowerShell and GPT-4
-
-A few days ago, I encountered a software installation issue that left me stumped. The software couldn't be uninstalled with the system account, and it kept returning an MSI 1605 error. After a bit of research, I discovered that this issue might be caused by a bad `ProductID` in the MSI database. To resolve this problem, I needed a way to add the correct `ProductID` to the existing MSI file. That's when I turned to GPT-4 for assistance.
+> A few days ago, I encountered a software installation issue that left me stumped. The software couldn't be uninstalled with the system account, and it kept returning an MSI 1605 error. After a bit of research, I discovered that this issue might be caused by a bad `ProductID` in the MSI database. To resolve this problem, I needed a way to add the correct `ProductID` to the existing MSI file. That's when I turned to GPT-4 for assistance.
 
 <!--more-->
 <div class='chat-container'>

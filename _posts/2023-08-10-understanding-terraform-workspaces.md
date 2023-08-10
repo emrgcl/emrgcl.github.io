@@ -3,10 +3,10 @@ layout: post
 title: "Understanding Terraform Workspaces"
 date: 2023-08-10
 categories: [DevOps, Terraform]
-author: "ChatGPT"
+author: "Emre : )"
 ---
 
-Terraform, a popular Infrastructure as Code tool, offers an extensive array of functionalities to manage infrastructure. One such essential feature is the concept of "workspaces". As infrastructure grows, so does the need to manage different environments, settings, or even regions efficiently. Workspaces in Terraform elegantly address this need. In this post, we will delve into the 'why' and 'how' of Terraform workspaces with illustrative examples.
+> Terraform, a popular Infrastructure as Code tool, offers an extensive array of functionalities to manage infrastructure. One such essential feature is the concept of "workspaces". As infrastructure grows, so does the need to manage different environments, settings, or even regions efficiently. Workspaces in Terraform elegantly address this need. In this post, we will delve into the 'why' and 'how' of Terraform workspaces with illustrative examples.
 
 <!--more-->
 
