@@ -6,7 +6,7 @@ categories: [Linux, Networking, Troubleshooting]
 tags: [telnet, netcat, nmap, openssl, socat, curl, bash]
 summary: "While working late into the night, I was tasked with testing ports on a server, but telnet was no longer an option. Luckily, I discovered several alternatives that made port testing much easier and efficient. Here's what I found, and how you can use them in your own troubleshooting adventures."
 ---
-Late one evening, I found myself staring at the terminal, faced with a daunting task: testing ports on a remote server. But there was a catch—`telnet` was no longer installed, and I wasn't eager to bring back the old tool. That's when I discovered a set of modern alternatives that changed the way I approach port testing forever. Here are the tools that saved the day.
+> Late one evening, I found myself staring at the terminal, faced with a daunting task: testing ports on a remote server. But there was a catch—`telnet` was no longer installed, and I wasn't eager to bring back the old tool. That's when I discovered a set of modern alternatives that changed the way I approach port testing forever. Here are the tools that saved the day.
 
 <!--more-->
 
