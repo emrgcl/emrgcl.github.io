@@ -53,39 +53,45 @@ The solution consists of four main components:
 
 ![Arc SQL Monitoring Architecture](https://gist.github.com/user-attachments/assets/720d77b5-2da8-4c88-9348-6dc00bd39fb8)
 
-- **Scheduled Query Rule** - Runs KQL queries against Azure Resource Graph to check SQL Server extension status
-- **System Managed Identity** - Queries resources across your subscription with Reader permissions
-- **Action Group** - Sends detailed email notifications about failing servers
-- **Role Assignment** - Grants managed identity necessary subscription-level permissions
+- **Scheduled Query Rule** - Runs KQL queries using the `arg()` function to access Azure Resource Graph and check SQL Server extension status across all accessible subscriptions
+- **System Managed Identity** - Authenticates queries to Azure Resource Graph with Reader permissions (automatically assigned to deployment subscription, manual assignment needed for other subscriptions)
+- **Action Group** - Sends detailed email notifications about failing servers with their specific Resource IDs
+- **Role Assignment** - Grants managed identity Reader role at subscription level (automatic for deployment subscription via ARM template)
 
 ### Deployment Prerequisites
 
 Before deploying this solution, ensure you have:
 
 **Required Permissions:**
-- **Contributor** role on the target resource group
-- **User Access Administrator** or **Owner** role at the subscription level (for role assignment)
+- **Contributor** role on the target resource group (to deploy the ARM template resources)
+- **User Access Administrator** or **Owner** role at the subscription level (required for the ARM template to create the role assignment that grants the managed identity Reader access)
+- **Note**: For multi-subscription monitoring, you'll also need User Access Administrator or Owner role on additional subscriptions to grant the managed identity Reader access to those subscriptions
 
 **Required Resources:**
 - An existing Log Analytics Workspace
 - Azure Arc-enabled servers with SQL Server extensions installed
+- **Important**: If Arc SQL Servers exist in multiple subscriptions, you'll need to manually grant Reader access after deployment (see Cross-Subscription Monitoring Setup section)
 
 ## Deep Dive: The Monitoring Query
 
-The solution uses a sophisticated KQL query that:
+The solution leverages Azure Resource Graph through Log Analytics to query Arc SQL Servers across all accessible subscriptions. Here's how it works:
+
+### How the Query Executes
+
+The scheduled query rule runs in your Log Analytics Workspace using the `arg()` function to access Azure Resource Graph:
 
 ```kql
-resources
+arg("").resources
 | where type =~ 'microsoft.hybridcompute/machines/extensions'
 | where properties.type in ('WindowsAgent.SqlServer', 'LinuxAgent.SqlServer')
 | extend extensionMessage = tostring(properties.instanceView.status.message)
 | extend uploadStatus = iif(extensionMessage contains 'SQL Server Extension State: Ready', 'Success', 'Failed')
-| summarize 
+| summarize
     TotalServers = count(),
     SuccessfulServers = countif(uploadStatus == 'Success'),
     FailedServers = countif(uploadStatus == 'Failed'),
     FailedResourceIds = make_list_if(id, uploadStatus == 'Failed')
-| project 
+| project
     TotalServers,
     SuccessfulServers,
     FailedServers,
@@ -93,11 +99,93 @@ resources
     SuccessRate = round((toreal(SuccessfulServers) / toreal(TotalServers)) * 100, 2)
 ```
 
-The magic of this query:
-- Finds all SQL Server extensions (both Windows and Linux)
-- Parses the extension status message to determine upload health
-- **Collects the Resource IDs of all failing servers** in the `FailedResourceIds` array
-- Provides exact server identification for targeted troubleshooting
+**Key Points:**
+- The `arg("")` function queries Azure Resource Graph, not the Log Analytics data
+- It can query across all subscriptions where the managed identity has Reader access
+- Results include Arc SQL Servers from all accessible subscriptions
+- **The Resource IDs of failing servers** are collected in the `FailedResourceIds` array for precise troubleshooting
+
+### Understanding Permissions
+
+The query requires proper permissions to work across subscriptions:
+
+1. **Deployment Subscription**: The ARM template automatically grants Reader role to the alert rule's managed identity
+2. **Other Subscriptions**: You must manually grant Reader access for Arc SQL Servers in other subscriptions
+3. **Query Scope**: Without proper permissions, the query will only see Arc SQL Servers in the deployment subscription
+
+### Cross-Subscription Monitoring Setup
+
+If you have Arc SQL Servers across multiple subscriptions, you'll need to grant the managed identity **Reader** access to each subscription. The managed identity only needs Reader role (not Contributor or Owner) since it only queries resource information through Azure Resource Graph.
+
+**Important**: You (the person running these commands) need User Access Administrator or Owner role on the target subscriptions to create these role assignments, but the managed identity itself only receives Reader permissions.
+
+#### PowerShell Method
+
+```powershell
+# Get the alert rule's managed identity
+$alertRuleName = "Arc SQL Upload Health Alert"
+$resourceGroupName = "rg-arc-monitoring"
+$alertRule = Get-AzScheduledQueryRule -Name $alertRuleName -ResourceGroupName $resourceGroupName
+$principalId = $alertRule.Identity.PrincipalId
+
+Write-Host "Managed Identity Principal ID: $principalId"
+
+# Grant Reader role to additional subscriptions
+$additionalSubscriptions = @(
+    "subscription-id-2",
+    "subscription-id-3"
+)
+
+foreach ($subId in $additionalSubscriptions) {
+    Write-Host "Granting Reader role to subscription: $subId"
+    New-AzRoleAssignment `
+        -ObjectId $principalId `
+        -RoleDefinitionName "Reader" `
+        -Scope "/subscriptions/$subId"
+}
+```
+
+#### Azure CLI Method
+
+```bash
+# Get the managed identity principal ID
+ALERT_NAME="Arc SQL Upload Health Alert"
+RG_NAME="rg-arc-monitoring"
+PRINCIPAL_ID=$(az monitor scheduled-query show \
+    --name "$ALERT_NAME" \
+    --resource-group "$RG_NAME" \
+    --query "identity.principalId" -o tsv)
+
+echo "Managed Identity Principal ID: $PRINCIPAL_ID"
+
+# Grant Reader role to additional subscriptions
+SUBSCRIPTIONS=("subscription-id-2" "subscription-id-3")
+
+for SUB_ID in "${SUBSCRIPTIONS[@]}"; do
+    echo "Granting Reader role to subscription: $SUB_ID"
+    az role assignment create \
+        --assignee-object-id "$PRINCIPAL_ID" \
+        --role "Reader" \
+        --scope "/subscriptions/$SUB_ID"
+done
+```
+
+#### Verify Permissions
+
+After granting permissions, verify the managed identity can see Arc SQL Servers across subscriptions:
+
+```powershell
+# Test the query in Log Analytics
+$query = @"
+arg("").resources
+| where type =~ 'microsoft.hybridcompute/machines/extensions'
+| where properties.type in ('WindowsAgent.SqlServer', 'LinuxAgent.SqlServer')
+| summarize ServerCount = count() by subscriptionId
+| order by ServerCount desc
+"@
+
+Invoke-AzOperationalInsightsQuery -WorkspaceId "your-workspace-id" -Query $query
+```
 
 ## Template Parameters
 
@@ -118,7 +206,6 @@ Understanding the parameters helps you customize the monitoring solution for you
 | **successRateThreshold** | integer | Minimum success rate percentage before triggering alert | `60` | 0-100 |
 | **alertSeverity** | string | Severity level of the alert | `Warning` | `Critical`, `Error`, `Warning`, `Informational`, `Verbose` |
 | **evaluationFrequency** | string | How often to check the upload status | `Daily` | `15 minutes`, `1 hour`, `6 hours`, `12 hours`, `Daily` |
-| **windowDuration** | string | Time window to analyze for each evaluation | `Daily` | `15 minutes`, `1 hour`, `6 hours`, `12 hours`, `Daily` |
 
 ### Optional Parameters
 
@@ -151,6 +238,8 @@ Understanding the parameters helps you customize the monitoring solution for you
 *For development environments, more frequent checks can help identify issues during testing and deployment activities.*
 
 ## Deployment Steps
+
+You have multiple options for deploying this ARM template. Choose the method that best fits your workflow:
 
 ### 1. Quick Deploy with Azure Portal
 
@@ -201,90 +290,29 @@ az deployment group create \
     evaluationFrequency="1 hour"
 ```
 
-## Troubleshooting Common Issues
-
-### 1. Permission Errors During Deployment
-
-**Error**: "The client does not have authorization to perform action 'Microsoft.Authorization/roleAssignments/write'"
-
-**Solution**: Ensure you have User Access Administrator or Owner role at the subscription level:
-
-```bash
-az role assignment create --assignee "{your-user-id}" \
-  --role "User Access Administrator" \
-  --scope "/subscriptions/{subscription-id}"
-```
-
-### 2. No SQL Servers Found
-
-**Symptom**: Alert shows 0 total servers
-
-**Checks**:
-```powershell
-# Verify Arc SQL Server extensions are installed
-Get-AzResource -ResourceType "Microsoft.HybridCompute/machines/extensions" | 
-  Where-Object {$_.Properties.type -in @('WindowsAgent.SqlServer', 'LinuxAgent.SqlServer')}
-```
-
-### 3. False Positives
-
-**Symptom**: Servers marked as failed but data is uploading
-
-**Solution**: Check the extension message format:
-```powershell
-# Get extension status for a specific server
-$extension = Get-AzResource -ResourceId "/subscriptions/{sub-id}/resourceGroups/{rg}/providers/Microsoft.HybridCompute/machines/{machine-name}/extensions/WindowsAgent.SqlServer"
-$extension.Properties.instanceView.status.message
-```
-
-## Best Practices
-
-### 1. Start with a Higher Threshold
-Begin with an 80-90% threshold and adjust down as you resolve common issues in your environment.
-
-### 2. Use Resource Tags
-Tag your Arc-enabled servers for better organization:
-```powershell
-Set-AzResource -ResourceId $vmResourceId -Tag @{
-    "Environment" = "Production"
-    "SQLVersion" = "2019"
-    "MonitoringEnabled" = "True"
-}
-```
-
-### 3. Combine with Log Analytics
-Query uploaded SQL data to verify monitoring accuracy:
-```kql
-SqlAssessment_CL
-| where TimeGenerated > ago(24h)
-| summarize count() by Computer
-| join kind=fullouter (
-    resources
-    | where type =~ 'microsoft.hybridcompute/machines'
-    | project Computer = name
-) on Computer
-```
-
-### 4. Set Up Multiple Action Groups
-Configure different notification methods for different environments:
-- Email for standard alerts
-- SMS for critical production issues
-- Webhook for integration with ticketing systems
-
 ## Advanced Scenarios
 
 ### Multi-Subscription Monitoring
 
-To monitor Arc SQL Servers across multiple subscriptions, deploy the template to each subscription and aggregate alerts in a central Log Analytics workspace:
+Since the solution uses Azure Resource Graph via the `arg()` function, you don't need to deploy the template to each subscription. Instead, deploy once and grant the managed identity Reader access to all subscriptions:
 
 ```powershell
-$subscriptions = @("sub1-id", "sub2-id", "sub3-id")
+# Deploy the solution once
+$deploymentSubscription = "primary-subscription-id"
+Set-AzContext -SubscriptionId $deploymentSubscription
+# Deploy template as shown above
 
-foreach ($sub in $subscriptions) {
-    Set-AzContext -SubscriptionId $sub
-    # Deploy template as shown above
+# Then grant Reader access to all subscriptions with Arc SQL Servers
+$alertRule = Get-AzScheduledQueryRule -Name "Arc SQL Upload Health Alert" -ResourceGroupName "rg-arc-monitoring"
+$principalId = $alertRule.Identity.PrincipalId
+
+$allSubscriptions = @("sub1-id", "sub2-id", "sub3-id")
+foreach ($subId in $allSubscriptions) {
+    New-AzRoleAssignment -ObjectId $principalId -RoleDefinitionName "Reader" -Scope "/subscriptions/$subId"
 }
 ```
+
+This single deployment will monitor all Arc SQL Servers across all granted subscriptions.
 
 ### Integration with Azure Logic Apps
 
