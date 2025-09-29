@@ -81,22 +81,7 @@ The solution leverages Azure Resource Graph through Log Analytics to query Arc S
 The scheduled query rule runs in your Log Analytics Workspace using the `arg()` function to access Azure Resource Graph:
 
 ```kql
-arg("").resources
-| where type =~ 'microsoft.hybridcompute/machines/extensions'
-| where properties.type in ('WindowsAgent.SqlServer', 'LinuxAgent.SqlServer')
-| extend extensionMessage = tostring(properties.instanceView.status.message)
-| extend uploadStatus = iif(extensionMessage contains 'SQL Server Extension State: Ready', 'Success', 'Failed')
-| summarize
-    TotalServers = count(),
-    SuccessfulServers = countif(uploadStatus == 'Success'),
-    FailedServers = countif(uploadStatus == 'Failed'),
-    FailedResourceIds = make_list_if(id, uploadStatus == 'Failed')
-| project
-    TotalServers,
-    SuccessfulServers,
-    FailedServers,
-    FailedResourceIds,
-    SuccessRate = round((toreal(SuccessfulServers) / toreal(TotalServers)) * 100, 2)
+arg("").resources | where type == "microsoft.hybridcompute/machines/extensions" | where properties.type in ("WindowsAgent.SqlServer", "LinuxAgent.SqlServer") | extend uploadStatus = iif(properties.instanceView.status.message contains "uploadStatus : OK", "OK", "Unhealthy") | extend idParts = split(id, "/") | extend truncatedId = strcat(idParts[0], "/", idParts[1], "/", idParts[2], "/", idParts[3], "/", idParts[4], "/", idParts[5], "/", idParts[6], "/", idParts[7], "/", idParts[8]) | summarize Total = count(), SuccessCount = countif(uploadStatus == "OK"), FailedResourceIds = make_list_if(truncatedId, uploadStatus == "Unhealthy") | extend SuccessRate = (SuccessCount * 100.0) / Total | extend FailedResourceIdsList = strcat_array(FailedResourceIds, ";") | project TotalSQLExtensions = Total, SuccessfulUploads = SuccessCount, FailedUploads = Total - SuccessCount, SuccessRatePercentage = round(SuccessRate, 2), FailedResourceIds = FailedResourceIdsList    
 ```
 
 **Key Points:**
