@@ -7,7 +7,7 @@ tags: [ghostty, homebrew, zsh, starship, neovim, cli, fzf, terminal]
 summary: "A quick reference for setting up a modern, fast terminal on macOS with Ghostty, Starship prompt, and essential CLI tools like eza, bat, ripgrep, and more."
 ---
 
-A quick reference for setting up a modern, fast terminal on macOS.
+> Setting up a fresh macOS terminal doesn't have to be painful. In this guide, I walk through my go-to setup — Ghostty as the terminal emulator, Starship for a clean prompt, and a curated set of modern CLI tools like eza, bat, ripgrep, and zoxide that replace the defaults with something faster and more enjoyable. Whether you're starting from scratch or refining your workflow, this is a quick reference to get up and running.
 
 <!--more-->
 
